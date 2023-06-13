@@ -13,5 +13,5 @@ func main() {
 	router := gin.Default()
 	router.GET("/food-menu", getFoodMenu)
 
-	router.Run("localhost:8080")
+	router.Run()
 }
