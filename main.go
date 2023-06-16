@@ -1,8 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+	"order-app/web-service-gin/database"
+	"order-app/web-service-gin/routes"
+
+	"github.com/gin-gonic/gin"
 )
 
 func CORSMiddleware() gin.HandlerFunc {
@@ -28,9 +31,11 @@ func getFoodMenu(c *gin.Context) {
 
 func main() {
 	router := gin.Default()
+	database.Connect()
 	router.Use(CORSMiddleware())
-	
+
 	router.GET("/food-menu", getFoodMenu)
+	routes.FoodRoute(router)
 
 	router.Run()
 }
