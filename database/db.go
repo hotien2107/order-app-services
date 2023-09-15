@@ -2,6 +2,7 @@ package database
 
 import (
 	"order-app/web-service-gin/models"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -10,7 +11,8 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	dsn := "user=postgres password=Speedattack2107 host=db.jrpbyyrgtuajhoswvywd.supabase.co port=5432 dbname=postgres"
+	pass := os.Getenv("DB_PASS")
+	dsn := "postgres://postgres:" + pass + "@db.ozhtmcffuhdwetgektfq.supabase.co:6543/postgres"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
